@@ -180,8 +180,8 @@ mod python {
         fn extract(obj: Borrowed<'a, 'py, PyAny>) -> PyResult<Self> {
             if let Ok(py_operation) = obj.extract::<PyOperation>() {
                 Ok(py_operation.inner)
-            } else if let Ok(expr_op) = obj.extract::<ExpressionOperation>() {
-                Ok(Operation::Expression(expr_op))
+            } else if let Ok(expr_op) = obj.extract::<Operation>() {
+                Ok(expr_op)
             } else {
                 Err(PyTypeError::new_err("Unrecognized operation type."))
             }
