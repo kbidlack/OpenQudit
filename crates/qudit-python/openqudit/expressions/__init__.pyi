@@ -40,6 +40,8 @@ __all__ = [
     "XGate",
     "YGate",
     "ZGate",
+    "ZMeasurement",
+    "ZeroState",
 ]
 
 @typing.final
@@ -1436,5 +1438,15 @@ def ZGate(radix: builtins.int = 2) -> UnitaryExpression:
     
     References:
         - <https://arxiv.org/pdf/2302.07966.pdf>
+    """
+
+def ZMeasurement(radix: builtins.int = 2) -> BraSystemExpression:
+    r"""
+    A terminating z-basis measurement for a qudit.
+    """
+
+def ZeroState(radix: builtins.int = 2) -> KetExpression:
+    r"""
+    Creates a zero-state ket expression with the specified radix.
     """
 

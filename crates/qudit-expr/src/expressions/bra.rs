@@ -110,6 +110,7 @@ mod python {
     use crate::{ComplexExpression, python::PyExpressionRegistrar};
     use pyo3::prelude::*;
     use pyo3_stub_gen::derive::*;
+    use pyo3_stub_gen::impl_stub_type;
     use qudit_core::Radix;
 
     /// A symbolic bra (row) vector expression over a qudit system.
@@ -250,6 +251,8 @@ mod python {
             Ok(py_expr.expr.clone())
         }
     }
+
+    impl_stub_type!(BraExpression = PyBraExpression);
 
     /// Registers the BraExpression class with the Python module.
     fn register(parent_module: &Bound<'_, PyModule>) -> PyResult<()> {

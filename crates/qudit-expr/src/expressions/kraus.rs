@@ -141,6 +141,7 @@ mod python {
     use crate::python::PyExpressionRegistrar;
     use pyo3::prelude::*;
     use pyo3_stub_gen::derive::*;
+    use pyo3_stub_gen::impl_stub_type;
     use qudit_core::Radix;
 
     /// A symbolic expression representing a set of Kraus operators.
@@ -268,6 +269,8 @@ mod python {
             Ok(py_expr.expr.clone())
         }
     }
+
+    impl_stub_type!(KrausOperatorsExpression = PyKrausOperatorsExpression);
 
     /// Registers the KrausOperatorsExpression class with the Python module.
     fn register(parent_module: &Bound<'_, PyModule>) -> PyResult<()> {
