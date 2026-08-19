@@ -103,6 +103,17 @@ pub mod python {
         }
     }
 
+    impl<'a, 'py> FromPyObject<'a, 'py> for DirectiveOperation {
+        type Error = PyErr;
+
+        fn extract(obj: Borrowed<'a, 'py, PyAny>) -> PyResult<Self> {
+            let py_dir_ref = obj.cast::<PyDirectiveOperation>()?;
+            match py_dir_ref.borrow().to_owned() {
+                PyDirectiveOperation::Barrier => Ok(DirectiveOperation::Barrier),
+            }
+        }
+    }
+
     // Registers the Barrier class with the Python module.
     fn register(parent_module: &Bound<'_, PyModule>) -> PyResult<()> {
         parent_module.add_class::<PyDirectiveOperation>()?;
