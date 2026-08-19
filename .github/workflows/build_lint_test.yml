@@ -65,7 +65,7 @@ jobs:
         run: cargo fmt --verbose --check
 
       - name: Check licenses and advisories
-        run: cargo deny --all-features check -c .cargo/deny.toml
+        run: cargo deny --config ./.cargo/deny.toml --all-features check
 
       - name: Check build and lint errors
         # Additionally checks build on all targets

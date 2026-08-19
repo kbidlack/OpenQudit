@@ -168,15 +168,14 @@ cargo fmt
 
 4.  **Check licenses and advisories:**
 
-```bash
-cargo deny --all-features check -c .cargo/deny.toml
-```
+````bash
+cargo deny --config ./.cargo/deny.toml --all-features check
 
 5.  **Check for lint warnings:**
 
 ```bash
 cargo clippy --workspace --features python --all-targets -- -D warnings
-```
+````
 
 6.  **Check for doc warnings:**
 
