@@ -19,7 +19,7 @@ repos:
       - id: cargo-deny
         name: cargo deny check
         description: Mirrors the "Check licenses and advisories" CI step.
-        entry: cargo deny --all-features check -c .cargo/deny.toml
+        entry: cargo deny --config ./.cargo/deny.toml --all-features check
         language: system
         pass_filenames: false
         always_run: true
