@@ -6,19 +6,20 @@ import numpy
 import numpy.typing
 import openqudit
 import typing
+from . import operations
 __all__ = [
     "Instruction",
     "InstructionId",
     "InstructionReference",
     "OpCode",
     "OpKind",
-    "Operation",
     "ParameterVector",
     "QuditCircuit",
     "QuditCircuitIterator",
     "Wire",
     "WireList",
     "WireListIterator",
+    "operations",
 ]
 
 @typing.final
@@ -141,12 +142,6 @@ class OpKind:
         """
 
 @typing.final
-class Operation:
-    def num_qudits(self) -> typing.Optional[builtins.int]: ...
-    def num_params(self) -> builtins.int: ...
-    def __repr__(self) -> builtins.str: ...
-
-@typing.final
 class ParameterVector:
     def assign_all(self, values: typing.Sequence[builtins.float]) -> None: ...
 
@@ -203,8 +198,8 @@ class QuditCircuit:
         r"""
         Returns the Kraus operators of the circuit as a NumPy array.
         """
-    def append(self, op: Operation, loc: typing.Any, args: typing.Optional[typing.Sequence[builtins.float]] = None) -> InstructionReference: ...
-    def cache(self, op: Operation) -> OpCode: ...
+    def append(self, op: operations.Operation, loc: typing.Any, args: typing.Optional[typing.Sequence[builtins.float]] = None) -> InstructionReference: ...
+    def cache(self, op: operations.Operation) -> OpCode: ...
     def remove(self, inst_id: InstructionId) -> typing.Optional[Instruction]: ...
     def count(self, op_code: OpCode) -> builtins.int: ...
     def __iter__(self) -> QuditCircuitIterator: ...

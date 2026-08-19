@@ -1,5 +1,6 @@
 import abc
 
+from openqudit import _openqudit
 from openqudit.circuit import QuditCircuit  # TODO: Barrier
 from openqudit.expressions import (
     BraSystemExpression,
@@ -9,14 +10,13 @@ from openqudit.expressions import (
     UnitarySystemExpression,
 )
 
+DirectiveOperation = _openqudit.circuit.DirectiveOperation
+
 
 class Operation(abc.ABC): ...
 
 
 class ExpressionOperation(Operation): ...
-
-
-class DirectiveOperation(Operation): ...
 
 
 class CircuitOperation(Operation): ...
@@ -30,4 +30,7 @@ for cls in (
     KetExpression,
 ):
     ExpressionOperation.register(cls)
+
+Operation.register(_openqudit.circuit.DirectiveOperation)
+
 CircuitOperation.register(QuditCircuit)

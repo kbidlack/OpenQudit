@@ -132,6 +132,7 @@ impl InternableOperation for Operation {
 #[cfg(feature = "python")]
 mod python {
     use super::*;
+    use crate::operation::directive::python::PyDirectiveOperation;
     use crate::python::PyCircuitRegistrar;
     use pyo3::{exceptions::PyTypeError, prelude::*};
     use pyo3_stub_gen::derive::*;
@@ -140,7 +141,11 @@ mod python {
     impl_stub_type!(Operation = PyOperation);
 
     #[gen_stub_pyclass]
-    #[pyclass(name = "Operation", module = "openqudit.circuit", from_py_object)]
+    #[pyclass(
+        name = "Operation",
+        module = "openqudit.circuit.operations",
+        from_py_object
+    )]
     #[derive(Clone)]
     pub struct PyOperation {
         pub(crate) inner: Operation,
@@ -180,8 +185,10 @@ mod python {
         fn extract(obj: Borrowed<'a, 'py, PyAny>) -> PyResult<Self> {
             if let Ok(py_operation) = obj.extract::<PyOperation>() {
                 Ok(py_operation.inner)
-            } else if let Ok(expr_op) = obj.extract::<Operation>() {
-                Ok(expr_op)
+            } else if let Ok(dir_op) = obj.extract::<PyDirectiveOperation>() {
+                Ok(Operation::Directive(dir_op.into()))
+            } else if let Ok(expr_op) = obj.extract::<ExpressionOperation>() {
+                Ok(Operation::Expression(expr_op))
             } else {
                 Err(PyTypeError::new_err("Unrecognized operation type."))
             }
