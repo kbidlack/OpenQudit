@@ -208,6 +208,10 @@ mod python {
             hasher.finish()
         }
 
+        fn __eq__(&self, other: &PyKetSystemExpression) -> bool {
+            self.expr == other.expr
+        }
+
         fn __repr__(&self) -> String {
             format!(
                 "KetSystemExpression(name='{}', radices={:?}, num_states={}, params={})",

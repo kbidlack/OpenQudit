@@ -213,11 +213,7 @@ pub mod python {
     impl_stub_type!(Operation = PyOperation);
 
     #[gen_stub_pyclass]
-    #[pyclass(
-        name = "Operation",
-        module = "openqudit.circuit.operations",
-        from_py_object
-    )]
+    #[pyclass(name = "Operation", module = "openqudit.circuit", from_py_object)]
     #[derive(Clone)]
     pub struct PyOperation {
         pub(crate) inner: Operation,

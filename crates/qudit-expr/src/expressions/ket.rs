@@ -234,6 +234,10 @@ mod python {
             hasher.finish()
         }
 
+        fn __eq__(&self, other: &PyKetExpression) -> bool {
+            self.expr == other.expr
+        }
+
         fn __repr__(&self) -> String {
             format!(
                 "KetExpression(name='{}', radices={:?}, params={})",

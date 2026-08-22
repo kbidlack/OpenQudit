@@ -221,6 +221,10 @@ mod python {
             hasher.finish()
         }
 
+        fn __eq__(&self, other: &PyBraSystemExpression) -> bool {
+            self.expr == other.expr
+        }
+
         fn __repr__(&self) -> String {
             format!(
                 "BraSystemExpression(name='{}', radices={:?}, num_states={}, params={})",

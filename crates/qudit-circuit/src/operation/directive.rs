@@ -65,7 +65,7 @@ pub mod python {
     #[gen_stub_pyclass_enum]
     #[pyclass(
         name = "DirectiveOperation",
-        module = "openqudit.circuit.operations",
+        module = "openqudit.circuit",
         eq,
         eq_int,
         from_py_object

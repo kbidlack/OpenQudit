@@ -227,6 +227,10 @@ mod python {
             hasher.finish()
         }
 
+        fn __eq__(&self, other: &PyKrausOperatorsExpression) -> bool {
+            self.expr == other.expr
+        }
+
         fn __repr__(&self) -> String {
             format!(
                 "KrausOperatorsExpression(name='{}', radices={:?}, num_operators={}, params={})",

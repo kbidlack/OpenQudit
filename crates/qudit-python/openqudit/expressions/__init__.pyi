@@ -161,6 +161,7 @@ class BraSystemExpression:
         Mirrors Rust equality, which compares element bodies and qudit
         structure and ignores the name the expression was given.
         """
+    def __eq__(self, other: BraSystemExpression) -> builtins.bool: ...
     def __repr__(self) -> builtins.str: ...
 
 @typing.final
@@ -610,6 +611,7 @@ class KetExpression:
         Mirrors Rust equality, which compares element bodies and qudit
         structure and ignores the name the expression was given.
         """
+    def __eq__(self, other: KetExpression) -> builtins.bool: ...
     def __repr__(self) -> builtins.str: ...
 
 @typing.final
@@ -663,6 +665,7 @@ class KetSystemExpression:
         Mirrors Rust equality, which compares element bodies and qudit
         structure and ignores the name the expression was given.
         """
+    def __eq__(self, other: KetSystemExpression) -> builtins.bool: ...
     def __repr__(self) -> builtins.str: ...
 
 @typing.final
@@ -718,6 +721,7 @@ class KrausOperatorsExpression:
         Mirrors Rust equality, which compares element bodies and qudit
         structure and ignores the name the expression was given.
         """
+    def __eq__(self, other: KrausOperatorsExpression) -> builtins.bool: ...
     def __repr__(self) -> builtins.str: ...
 
 @typing.final
@@ -912,6 +916,7 @@ class UnitarySystemExpression:
         Mirrors Rust equality, which compares element bodies and qudit
         structure and ignores the name the expression was given.
         """
+    def __eq__(self, other: UnitarySystemExpression) -> builtins.bool: ...
     def __repr__(self) -> builtins.str: ...
 
 def ClassicallyControlled(expr: UnitaryExpression, control_radices: builtins.int | typing.Sequence[builtins.int] = [2], control_levels: typing.Optional[typing.Sequence[typing.Sequence[builtins.int]]] = None) -> UnitarySystemExpression: ...

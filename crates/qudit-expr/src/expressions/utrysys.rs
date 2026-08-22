@@ -211,6 +211,10 @@ mod python {
             hasher.finish()
         }
 
+        fn __eq__(&self, other: &PyUnitarySystemExpression) -> bool {
+            self.expr == other.expr
+        }
+
         fn __repr__(&self) -> String {
             format!(
                 "UnitarySystemExpression(name='{}', radices={:?}, num_unitaries={}, params={})",

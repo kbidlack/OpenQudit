@@ -2,24 +2,25 @@
 # ruff: noqa: E501, F401, F403, F405
 
 import builtins
+import enum
 import numpy
 import numpy.typing
 import openqudit
 import typing
-from . import operations
 __all__ = [
+    "DirectiveOperation",
     "Instruction",
     "InstructionId",
     "InstructionReference",
     "OpCode",
     "OpKind",
+    "Operation",
     "ParameterVector",
     "QuditCircuit",
     "QuditCircuitIterator",
     "Wire",
     "WireList",
     "WireListIterator",
-    "operations",
 ]
 
 @typing.final
@@ -142,6 +143,12 @@ class OpKind:
         """
 
 @typing.final
+class Operation:
+    def num_qudits(self) -> typing.Optional[builtins.int]: ...
+    def num_params(self) -> builtins.int: ...
+    def __repr__(self) -> builtins.str: ...
+
+@typing.final
 class ParameterVector:
     def assign_all(self, values: typing.Sequence[builtins.float]) -> None: ...
 
@@ -199,7 +206,7 @@ class QuditCircuit:
         Returns the Kraus operators of the circuit as a NumPy array.
         """
     def append(self, op: typing.Any, loc: typing.Any, args: typing.Optional[typing.Sequence[builtins.float]] = None) -> InstructionReference: ...
-    def cache(self, op: operations.Operation) -> OpCode: ...
+    def cache(self, op: Operation) -> OpCode: ...
     def remove(self, inst_id: InstructionId) -> typing.Optional[Instruction]: ...
     def count(self, op_code: OpCode) -> builtins.int: ...
     def __iter__(self) -> QuditCircuitIterator: ...
@@ -408,4 +415,8 @@ class WireList:
 class WireListIterator:
     def __iter__(self) -> WireListIterator: ...
     def __next__(self) -> typing.Optional[Wire]: ...
+
+@typing.final
+class DirectiveOperation(enum.Enum):
+    Barrier = ...
 
